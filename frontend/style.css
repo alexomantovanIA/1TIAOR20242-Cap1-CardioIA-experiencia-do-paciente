@@ -243,6 +243,13 @@ h2 {
   color: #5c4635;
 }
 
+.message-tag--source {
+  background: rgba(35, 103, 74, 0.10);
+  color: var(--success);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .prompt-chip,
 .secondary-button,
 .primary-button {
