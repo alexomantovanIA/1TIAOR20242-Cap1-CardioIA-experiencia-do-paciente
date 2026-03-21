@@ -16,6 +16,8 @@
 - Tutor: Leonardo Ruiz Orabona
 - Coordenador: Andre Godoi
 
+**Repositorio:** [github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente](https://github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente)
+
 ---
 
 ## 1. Introducao e Contextualizacao

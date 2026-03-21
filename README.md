@@ -10,6 +10,8 @@
 
 ### Fase 5
 
+**Repositório:** [github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente](https://github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente)
+
 ---
 
 ## 👨‍🎓 Integrantes:

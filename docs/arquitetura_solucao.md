@@ -1,5 +1,7 @@
 # Arquitetura da Solucao - CardioIA Fase 5
 
+**Repositorio:** [github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente](https://github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente)
+
 ## 1. Visao Geral da Arquitetura
 
 O CardioIA adota uma arquitetura em tres camadas com separacao de responsabilidades, projetada para simplicidade, testabilidade e extensibilidade.
