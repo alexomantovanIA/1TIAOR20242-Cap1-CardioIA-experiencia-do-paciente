@@ -333,6 +333,7 @@
       "dialog_node": "node_saudacao",
       "type": "standard",
       "title": "Saudacao",
+      "previous_sibling": "node_welcome",
       "conditions": "#saudacao",
       "output": {
         "generic": [
@@ -349,6 +350,7 @@
       "dialog_node": "node_despedida",
       "type": "standard",
       "title": "Despedida",
+      "previous_sibling": "node_saudacao",
       "conditions": "#despedida",
       "output": {
         "generic": [
@@ -365,6 +367,7 @@
       "dialog_node": "node_dor_peito",
       "type": "standard",
       "title": "Dor no peito",
+      "previous_sibling": "node_despedida",
       "conditions": "#informar_dor_peito",
       "output": {
         "generic": [
@@ -381,6 +384,7 @@
       "dialog_node": "node_palpitacao",
       "type": "standard",
       "title": "Palpitacao",
+      "previous_sibling": "node_dor_peito",
       "conditions": "#informar_palpitacao",
       "output": {
         "generic": [
@@ -397,6 +401,7 @@
       "dialog_node": "node_falta_ar",
       "type": "standard",
       "title": "Falta de ar",
+      "previous_sibling": "node_palpitacao",
       "conditions": "#informar_falta_ar",
       "output": {
         "generic": [
@@ -413,6 +418,7 @@
       "dialog_node": "node_tontura",
       "type": "standard",
       "title": "Tontura",
+      "previous_sibling": "node_falta_ar",
       "conditions": "#informar_tontura",
       "output": {
         "generic": [
@@ -429,6 +435,7 @@
       "dialog_node": "node_pressao",
       "type": "standard",
       "title": "Pressao arterial",
+      "previous_sibling": "node_tontura",
       "conditions": "#informar_pressao",
       "output": {
         "generic": [
@@ -445,6 +452,7 @@
       "dialog_node": "node_inchaco",
       "type": "standard",
       "title": "Inchaco e edema",
+      "previous_sibling": "node_pressao",
       "conditions": "#informar_inchaco",
       "output": {
         "generic": [
@@ -461,6 +469,7 @@
       "dialog_node": "node_ecg",
       "type": "standard",
       "title": "ECG",
+      "previous_sibling": "node_inchaco",
       "conditions": "#perguntar_ecg",
       "output": {
         "generic": [
@@ -477,6 +486,7 @@
       "dialog_node": "node_ecocardiograma",
       "type": "standard",
       "title": "Ecocardiograma",
+      "previous_sibling": "node_ecg",
       "conditions": "#perguntar_ecocardiograma",
       "output": {
         "generic": [
@@ -493,6 +503,7 @@
       "dialog_node": "node_holter",
       "type": "standard",
       "title": "Holter",
+      "previous_sibling": "node_ecocardiograma",
       "conditions": "#perguntar_holter",
       "output": {
         "generic": [
@@ -509,6 +520,7 @@
       "dialog_node": "node_teste_ergometrico",
       "type": "standard",
       "title": "Teste Ergometrico",
+      "previous_sibling": "node_holter",
       "conditions": "#perguntar_teste_ergometrico",
       "output": {
         "generic": [
@@ -525,6 +537,7 @@
       "dialog_node": "node_cateterismo",
       "type": "standard",
       "title": "Cateterismo",
+      "previous_sibling": "node_teste_ergometrico",
       "conditions": "#perguntar_cateterismo",
       "output": {
         "generic": [
@@ -541,6 +554,7 @@
       "dialog_node": "node_exame_geral",
       "type": "standard",
       "title": "Exames gerais",
+      "previous_sibling": "node_cateterismo",
       "conditions": "#perguntar_exame",
       "output": {
         "generic": [
@@ -557,6 +571,7 @@
       "dialog_node": "node_solicitar_diagnostico",
       "type": "standard",
       "title": "Limite - Solicitacao de diagnostico",
+      "previous_sibling": "node_exame_geral",
       "conditions": "#solicitar_diagnostico",
       "output": {
         "generic": [
@@ -573,6 +588,7 @@
       "dialog_node": "node_sintoma_geral",
       "type": "standard",
       "title": "Sintoma generico",
+      "previous_sibling": "node_solicitar_diagnostico",
       "conditions": "#informar_sintoma_geral",
       "output": {
         "generic": [
@@ -589,6 +605,7 @@
       "dialog_node": "node_fallback",
       "type": "standard",
       "title": "Fallback",
+      "previous_sibling": "node_sintoma_geral",
       "conditions": "anything_else",
       "output": {
         "generic": [
