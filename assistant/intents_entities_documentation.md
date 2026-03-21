@@ -8,9 +8,9 @@ O modelo de linguagem natural do CardioIA foi projetado para reconhecer intencoe
 
 | Componente        | Quantidade | Detalhes                                      |
 |-------------------|------------|-----------------------------------------------|
-| Intents           | 15         | 10 exemplos cada = 150 exemplos de treino     |
-| Entities          | 4          | 22 valores com 67 sinonimos                   |
-| Dialog Nodes      | 17         | Incluindo welcome, fallback e limite          |
+| Intents           | 16         | 10 exemplos cada = 160 exemplos de treino     |
+| Entities          | 4          | 23 valores com ~85 sinonimos                  |
+| Dialog Nodes      | 18         | Incluindo welcome, fallback e limite          |
 | Regras de urgencia| 20+2       | 20 palavras-chave + 2 regras combinatorias    |
 
 ---
@@ -160,6 +160,27 @@ Capturam relatos de sintomas cardiovasculares. Sao o nucleo do assistente educac
 | 9 | Pressao arterial elevada                            |
 |10 | Tomo remedio para pressao e continua alta           |
 
+#### `#informar_inchaco`
+- **Descricao:** Inchaco nas pernas, tornozelos ou pes (edema).
+- **Funcao no fluxo:** Orientacao sobre edema como possivel sinal cardiovascular (insuficiencia cardiaca).
+- **Palavras-chave relacionadas:** inchaco, edema, inchada, pernas pesadas, retencao de liquido, tornozelos.
+- **Exemplos de treino:**
+
+| # | Exemplo                                            |
+|---|-----------------------------------------------------|
+| 1 | Minhas pernas estao inchadas                        |
+| 2 | Inchaco nos tornozelos                              |
+| 3 | Meus pes estao muito inchados                       |
+| 4 | Edema nas pernas                                    |
+| 5 | Faz uma semana que meus tornozelos estao inchando no final do dia |
+| 6 | Minhas pernas estao retendo liquido e ficam enormes a noite |
+| 7 | Quando aperto a canela fica a marca do dedo, ta muito inchado |
+| 8 | Meus pes incham tanto que nao consigo calcar sapato a tarde |
+| 9 | Sinto as pernas pesadas e inchadas, sera que e do coracao? |
+|10 | Notei um inchaco nos pes que nao tinha antes, estou preocupado |
+
+---
+
 #### `#informar_sintoma_geral`
 - **Descricao:** Relato generico de mal-estar sem sintoma especifico.
 - **Funcao no fluxo:** Solicita detalhamento para classificacao mais precisa.
@@ -250,11 +271,12 @@ Classifica o tipo de sintoma cardiovascular relatado.
 | `palpitacao`       | palpitacao, coracao acelerado, taquicardia, batimento rapido, coracao disparado  | 5 |
 | `falta_ar`         | falta de ar, dispneia, dificuldade para respirar, cansaco, fadiga              | 5 |
 | `tontura`          | tontura, vertigem, desmaio, sincope, cabeca leve                               | 5 |
-| `pressao_alterada` | pressao alta, hipertensao, pressao baixa, hipotensao                           | 4 |
+| `pressao_alterada` | pressao alta, hipertensao, pressao baixa, hipotensao, pressao descontrolada | 5 |
+| `inchaco`          | inchaco, edema, pernas inchadas, pes inchados, tornozelos inchados, retencao de liquido | 6 |
 | `nausea`           | nausea, enjoo, vontade de vomitar                                              | 3 |
 | `suor_frio`        | suor frio, sudorese, suando frio                                               | 3 |
 
-**Total:** 7 valores, 30 sinonimos.
+**Total:** 8 valores, 37 sinonimos.
 
 ### 3.2 @duracao
 
@@ -380,15 +402,16 @@ O Watson Assistant utiliza 17 nos de dialogo para processar as respostas. A tabe
 | 6 | node_falta_ar             | Falta de ar                | `#informar_falta_ar`       | Orientacao educacional        |
 | 7 | node_tontura              | Tontura                    | `#informar_tontura`        | Orientacao educacional        |
 | 8 | node_pressao              | Pressao arterial           | `#informar_pressao`        | Orientacao educacional        |
-| 9 | node_ecg                  | ECG                        | `#perguntar_ecg`           | Explicacao de exame           |
-|10 | node_ecocardiograma       | Ecocardiograma             | `#perguntar_ecocardiograma`| Explicacao de exame           |
-|11 | node_holter               | Holter                     | `#perguntar_holter`        | Explicacao de exame           |
-|12 | node_teste_ergometrico    | Teste Ergometrico          | `#perguntar_teste_ergometrico` | Explicacao de exame       |
-|13 | node_cateterismo          | Cateterismo                | `#perguntar_cateterismo`   | Explicacao de exame           |
-|14 | node_exame_geral          | Exames gerais              | `#perguntar_exame`         | Lista de exames disponiveis   |
-|15 | node_solicitar_diagnostico| Limite - Diagnostico       | `#solicitar_diagnostico`   | Recusa etica + orientacao     |
-|16 | node_sintoma_geral        | Sintoma generico           | `#informar_sintoma_geral`  | Solicitacao de detalhamento   |
-|17 | node_fallback             | Fallback                   | `anything_else`            | Redirecionamento para escopo  |
+| 9 | node_inchaco              | Inchaco e edema            | `#informar_inchaco`        | Orientacao educacional        |
+|10 | node_ecg                  | ECG                        | `#perguntar_ecg`           | Explicacao de exame           |
+|11 | node_ecocardiograma       | Ecocardiograma             | `#perguntar_ecocardiograma`| Explicacao de exame           |
+|12 | node_holter               | Holter                     | `#perguntar_holter`        | Explicacao de exame           |
+|13 | node_teste_ergometrico    | Teste Ergometrico          | `#perguntar_teste_ergometrico` | Explicacao de exame       |
+|14 | node_cateterismo          | Cateterismo                | `#perguntar_cateterismo`   | Explicacao de exame           |
+|15 | node_exame_geral          | Exames gerais              | `#perguntar_exame`         | Lista de exames disponiveis   |
+|16 | node_solicitar_diagnostico| Limite - Diagnostico       | `#solicitar_diagnostico`   | Recusa etica + orientacao     |
+|17 | node_sintoma_geral        | Sintoma generico           | `#informar_sintoma_geral`  | Solicitacao de detalhamento   |
+|18 | node_fallback             | Fallback                   | `anything_else`            | Redirecionamento para escopo  |
 
 ---
 
@@ -398,13 +421,13 @@ O Watson Assistant utiliza 17 nos de dialogo para processar as respostas. A tabe
 
 | Metrica                              | Valor                |
 |--------------------------------------|----------------------|
-| Total de intents                     | 15                   |
-| Total de exemplos de treino          | 150 (10 por intent)  |
+| Total de intents                     | 16                   |
+| Total de exemplos de treino          | 160 (10 por intent)  |
 | Media de palavras por exemplo        | ~5.2                 |
 | Total de entities                    | 4                    |
-| Total de valores de entities         | 20                   |
-| Total de sinonimos                   | ~80                  |
-| Dialog nodes                         | 17                   |
+| Total de valores de entities         | 21                   |
+| Total de sinonimos                   | ~85                  |
+| Dialog nodes                         | 18                   |
 | Palavras-chave de urgencia           | 20                   |
 | Regras combinatorias                 | 2                    |
 

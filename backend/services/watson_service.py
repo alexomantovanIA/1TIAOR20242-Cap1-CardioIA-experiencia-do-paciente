@@ -18,26 +18,36 @@ INTENT_KEYWORDS = {
     "informar_dor_peito": [
         "dor no peito", "dor toracica", "aperto no peito", "pressao no peito",
         "pontada no peito", "desconforto toracico", "dor no torax",
+        "queimacao no peito", "fisgada no peito",
     ],
     "informar_palpitacao": [
         "palpitacao", "palpitacoes", "coracao acelerado", "batimento rapido",
         "taquicardia", "coracao disparado", "batimento irregular",
+        "batedeira", "coracao falhando", "pula batida",
     ],
     "informar_falta_ar": [
         "falta de ar", "dispneia", "dificuldade para respirar",
-        "cansaco", "fadiga", "falta de folego",
+        "cansaco", "fadiga", "falta de folego", "ofegante", "sufocado",
     ],
-    "informar_tontura": ["tontura", "vertigem", "desmaio", "sincope", "cabeca leve"],
+    "informar_tontura": [
+        "tontura", "vertigem", "desmaio", "sincope", "cabeca leve",
+        "vista escureceu", "quase apaguei",
+    ],
     "informar_pressao": [
         "pressao alta", "hipertensao", "pressao baixa", "hipotensao",
-        "pressao arterial",
+        "pressao arterial", "pressao descontrolada",
+    ],
+    "informar_inchaco": [
+        "inchaco", "inchada", "inchadas", "inchado", "inchados",
+        "edema", "retencao de liquido", "pernas inchadas",
+        "pes inchados", "tornozelos inchados", "pernas pesadas",
     ],
     "perguntar_ecg": ["ecg", "eletrocardiograma"],
-    "perguntar_ecocardiograma": ["ecocardiograma", "eco doppler"],
-    "perguntar_holter": ["holter"],
+    "perguntar_ecocardiograma": ["ecocardiograma", "eco doppler", "ultrassom do coracao"],
+    "perguntar_holter": ["holter", "monitor cardiaco"],
     "perguntar_teste_ergometrico": ["teste ergometrico", "teste de esforco", "esteira"],
-    "perguntar_cateterismo": ["cateterismo", "angiografia"],
-    "perguntar_exame": ["exame", "exames cardiovasculares", "exames do coracao"],
+    "perguntar_cateterismo": ["cateterismo", "angiografia", "angioplastia"],
+    "perguntar_exame": ["exame", "exames cardiovasculares", "exames do coracao", "exames cardiacos"],
     "solicitar_diagnostico": [
         "diagnostico", "o que eu tenho", "qual minha doenca",
         "qual e meu problema", "me diagnostica",
@@ -53,6 +63,8 @@ ENTITY_PATTERNS = {
         "dor no peito", "palpitacao", "falta de ar", "tontura",
         "cansaco", "fadiga", "desmaio", "pressao alta", "pressao baixa",
         "nausea", "suor frio", "formigamento",
+        "inchaco", "edema", "inchada", "inchado",
+        "queimacao", "fisgada", "batedeira", "sufocado", "ofegante",
     ],
     "duracao": [
         "minutos", "horas", "dias", "semanas", "meses",
@@ -111,6 +123,13 @@ INTENT_RESPONSES = {
         "Valores de referencia para adultos: sistolica ate 120 mmHg e diastolica ate 80 mmHg. "
         "Hipertensao (pressao alta) e um fator de risco importante para eventos cardiovasculares. "
         "O monitoramento regular e o acompanhamento medico sao essenciais."
+    ),
+    "informar_inchaco": (
+        "O inchaco (edema) nas pernas, tornozelos ou pes pode estar relacionado a problemas "
+        "cardiovasculares como insuficiencia cardiaca, quando o coracao nao bombeia sangue de "
+        "forma eficiente e ocorre acumulo de liquido. Observe se o inchaco piora ao longo do dia, "
+        "se e acompanhado de falta de ar ou cansaco, e se ao pressionar a pele a marca permanece "
+        "(sinal de cacifo). Esse sintoma merece acompanhamento medico para investigacao adequada."
     ),
     "perguntar_ecg": (
         "O Eletrocardiograma (ECG) e um exame que registra a atividade eletrica do coracao. "
@@ -197,6 +216,7 @@ def _choose_response(intents):
         "informar_falta_ar",
         "informar_tontura",
         "informar_pressao",
+        "informar_inchaco",
         "perguntar_ecg",
         "perguntar_ecocardiograma",
         "perguntar_holter",

@@ -223,6 +223,30 @@ CardioIA: Obrigado por compartilhar. Para que eu possa oferecer uma
 
 ---
 
+## Conversa 10 - Inchaco nas Pernas (Edema)
+
+**Cenario:** Usuario relata inchaco nos pes e pernas -- sintoma cardiovascular relevante.
+
+```
+Usuario: Faz uma semana que meus tornozelos estao inchando no final do dia
+         e minhas pernas ficam pesadas. Sera que e do coracao?
+CardioIA: O inchaco (edema) nas pernas, tornozelos ou pes pode estar
+          relacionado a problemas cardiovasculares como insuficiencia
+          cardiaca, quando o coracao nao bombeia sangue de forma eficiente
+          e ocorre acumulo de liquido. Observe se o inchaco piora ao longo
+          do dia, se e acompanhado de falta de ar ou cansaco, e se ao
+          pressionar a pele a marca permanece (sinal de cacifo). Esse
+          sintoma merece acompanhamento medico para investigacao adequada.
+```
+
+**Analise:**
+- Intent: `#informar_inchaco`
+- Entity: `@sintoma=inchaco`, `@duracao=semanas`
+- Resposta explica relacao edema-coracao e orienta observacao do sinal de cacifo
+- Encaminha para acompanhamento medico
+
+---
+
 ## Resumo dos Cenarios Cobertos
 
 | # | Cenario                     | Intent / Regra             | Tipo de Resposta          |
@@ -236,3 +260,4 @@ CardioIA: Obrigado por compartilhar. Para que eu possa oferecer uma
 | 7 | Fora do escopo             | anything_else              | Redirecionamento          |
 | 8 | Urgencia (combinacao)      | safety_override            | Alerta SAMU 192           |
 | 9 | Sintoma generico           | informar_sintoma_geral     | Solicitacao de detalhes   |
+|10 | Inchaco (edema)            | informar_inchaco           | Educacional + observacao  |
