@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CardioIA | Fase 5</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#chatPanel">Ir para o chat</a>
+
+  <main class="layout-shell">
+    <section class="hero-panel">
+      <div class="hero-panel__brand">
+        <img src="/assets/logo-fiap.png" alt="Logo FIAP" class="hero-panel__logo">
+        <div>
+          <p class="eyebrow">FIAP | CardioIA</p>
+          <h1>Assistente Cardiológico Inteligente e Conversacional</h1>
+        </div>
+      </div>
+
+      <p class="hero-panel__copy">
+        Protótipo acadêmico para orientação educacional e triagem inicial simulada,
+        com foco em clareza, segurança e encaminhamento responsável.
+      </p>
+
+      <div class="hero-panel__highlights" aria-label="Diretrizes principais do assistente">
+        <span class="pill">Uso educacional</span>
+        <span class="pill">Sem diagnóstico</span>
+        <span class="pill">Triagem inicial simulada</span>
+        <span class="pill">Alerta para urgência</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="context-panel" aria-labelledby="contextTitle">
+        <div class="context-card">
+          <p class="section-kicker">Escopo</p>
+          <h2 id="contextTitle">Como o CardioIA conduz a conversa</h2>
+          <ol class="flow-list">
+            <li>Coleta sintoma principal, duração e intensidade.</li>
+            <li>Reconhece sinais de alerta por palavras-chave.</li>
+            <li>Oferece orientação educacional ou reforça busca por atendimento.</li>
+          </ol>
+        </div>
+
+        <div class="context-card context-card--soft">
+          <p class="section-kicker">Boas práticas de uso</p>
+          <ul class="guideline-list">
+            <li>Descreva o sintoma principal de forma objetiva.</li>
+            <li>Inclua duração, intensidade e sintomas associados.</li>
+            <li>Em sinais graves, priorize atendimento médico imediato.</li>
+          </ul>
+        </div>
+
+        <div class="context-card">
+          <p class="section-kicker">Começar com exemplos</p>
+          <div class="prompt-grid" id="promptGrid">
+            <button type="button" class="prompt-chip" data-prompt="Estou com palpitações leves há 2 dias e queria uma orientação inicial.">
+              Palpitações leves
+            </button>
+            <button type="button" class="prompt-chip" data-prompt="Quero entender o que é um ECG e quando ele costuma ser solicitado.">
+              Explicar ECG
+            </button>
+            <button type="button" class="prompt-chip" data-prompt="Estou com dor intensa no peito e falta de ar.">
+              Sinal de urgência
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="chat-panel" id="chatPanel" aria-labelledby="chatTitle">
+        <header class="chat-panel__header">
+          <div>
+            <p class="section-kicker">Interação</p>
+            <h2 id="chatTitle">Chat educacional</h2>
+            <p class="chat-panel__description">
+              Informe sintomas, duração e intensidade para receber orientação inicial segura.
+            </p>
+          </div>
+          <div class="status-card" aria-live="polite">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusBadge">Pronto para conversar</span>
+          </div>
+        </header>
+
+        <section class="safety-banner" aria-label="Aviso ético e médico">
+          <strong>Aviso ético</strong>
+          <p>
+            Este assistente não realiza diagnóstico, não prescreve medicamentos e não substitui avaliação profissional.
+          </p>
+        </section>
+
+        <section class="message-legend" aria-label="Legenda dos tipos de resposta">
+          <span class="legend-chip legend-chip--neutral">Orientação educacional</span>
+          <span class="legend-chip legend-chip--warning">Urgência</span>
+          <span class="legend-chip legend-chip--limit">Limite do assistente</span>
+        </section>
+
+        <section class="messages-panel">
+          <div class="messages" id="messages" aria-live="polite" aria-label="Histórico da conversa"></div>
+        </section>
+
+        <form class="composer" id="chatForm" novalidate>
+          <div class="composer__header">
+            <label for="messageInput">Descreva sua mensagem</label>
+            <span id="inputHint">Exemplo: dor no peito moderada há 3 horas, sem falta de ar.</span>
+          </div>
+
+          <textarea
+            id="messageInput"
+            name="message"
+            rows="4"
+            placeholder="Escreva aqui sua dúvida ou sintoma principal."
+            aria-describedby="inputHint formError"
+            required
+          ></textarea>
+
+          <p class="form-error" id="formError" role="alert" hidden></p>
+
+          <div class="composer__footer">
+            <p class="helper-text">
+              Use o assistente apenas para fins educacionais. Em urgência, procure atendimento imediatamente.
+            </p>
+            <div class="composer__actions">
+              <button type="button" class="secondary-button" id="clearButton">Limpar conversa</button>
+              <button type="submit" class="primary-button" id="sendButton">Enviar mensagem</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
