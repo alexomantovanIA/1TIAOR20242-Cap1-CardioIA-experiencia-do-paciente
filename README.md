@@ -233,10 +233,10 @@ Resultado esperado: **30 passed** (4 healthcheck + 14 chat + 12 segurança).
 | Relatório Acadêmico | `docs/relatorio_fase5.md` | Metodologia, arquitetura, resultados, ética |
 | Arquitetura da Solução | `docs/arquitetura_solucao.md` | Diagramas, componentes, fluxo de dados, API |
 | Fluxo Conversacional | `assistant/fluxo_conversacional.md` | Máquina de estados, estágios, exceções |
-| Intents e Entities | `assistant/intents_entities_documentation.md` | 15 intents, 4 entities, métricas, regras |
+| Intents e Entities | `assistant/intents_entities_documentation.md` | 16 intents, 4 entities, métricas, regras |
 | Configuração Watson | `docs/instrucoes_configuracao_watson.md` | Passo a passo, troubleshooting |
 | Roteiro do Vídeo | `docs/roteiro_video.md` | Cenas, narração, checklist |
-| Exemplos de Conversa | `samples/conversas_exemplo.md` | 9 cenários com análise técnica |
+| Exemplos de Conversa | `samples/conversas_exemplo.md` | 10 cenários com análise técnica |
 | Diretrizes de Resposta | `backend/prompts/response_guidelines.md` | Templates, regras, governança |
 | Export Watson | `assistant/cardioia_assistant_export.json` | JSON importável com toda a modelagem |
 

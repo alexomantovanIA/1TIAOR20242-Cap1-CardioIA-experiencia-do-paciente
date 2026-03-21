@@ -59,7 +59,7 @@ O projeto seguiu uma abordagem incremental organizada em 8 fases internas:
 
 **Fase A - Planejamento e Arquitetura:** definicao de objetivo, escopo, restricoes tecnicas e eticas, estrutura de diretorios e arquivos de configuracao. Decisao por Flask como framework backend e Watson Assistant como motor de NLP.
 
-**Fase B - Modelagem do Assistente:** construcao de 15 intencoes (intents), 4 entidades (entities) com sinonimos, e 17 nos de dialogo (dialog nodes) no padrao IBM Watson Assistant. Documentacao completa em `assistant/intents_entities_documentation.md`.
+**Fase B - Modelagem do Assistente:** construcao de 16 intencoes (intents), 4 entidades (entities) com sinonimos, e 18 nos de dialogo (dialog nodes) no padrao IBM Watson Assistant. Documentacao completa em `assistant/intents_entities_documentation.md`.
 
 **Fase C - Backend Flask:** implementacao dos endpoints `/api/chat` (POST) e `/health` (GET), validacao de entrada, sanitizacao de mensagens, normalizacao de caracteres e organizacao modular por camadas (routes, services, models, utils).
 
@@ -120,8 +120,8 @@ A arquitetura segue o padrao de tres camadas com separacao clara de responsabili
 - `tests/` - Suite de testes automatizados
 
 **Servico de NLP:** Dupla implementacao:
-- **Watson Assistant (API v2):** Autenticacao IAM, sessoes persistentes, classificacao por modelo de machine learning treinado com 150 exemplos de treino.
-- **Fallback Local:** Motor baseado em correspondencia de palavras-chave com normalizacao de acentos, 15 intencoes mapeadas e 4 tipos de entidades com reconhecimento por padrao regex.
+- **Watson Assistant (API v2):** Autenticacao IAM, sessoes persistentes, classificacao por modelo de machine learning treinado com ~160 exemplos de treino.
+- **Fallback Local:** Motor baseado em correspondencia de palavras-chave com normalizacao de acentos, 16 intencoes mapeadas e 4 tipos de entidades com reconhecimento por padrao regex.
 
 ### 3.3 Especificacao da API
 
@@ -173,7 +173,7 @@ Response (200):
 
 ### 4.1 Intencoes (Intents)
 
-Foram modeladas 15 intencoes com 10 exemplos de treino cada (total: 150 exemplos):
+Foram modeladas 16 intencoes com 10 exemplos de treino cada (total: ~160 exemplos):
 
 | Categoria | Intent | Descricao | Exemplos |
 |-----------|--------|-----------|----------|
@@ -184,6 +184,7 @@ Foram modeladas 15 intencoes com 10 exemplos de treino cada (total: 150 exemplos
 | Sintomas | `informar_falta_ar` | Dispneia | "Falta de ar", "Cansaco" |
 | Sintomas | `informar_tontura` | Vertigem/sincope | "Tontura", "Desmaio" |
 | Sintomas | `informar_pressao` | Pressao arterial | "Pressao alta", "Hipertensao" |
+| Sintomas | `informar_inchaco` | Edema/inchaco | "Pernas inchadas", "Pes inchados" |
 | Sintomas | `informar_sintoma_geral` | Sintoma generico | "Nao me sinto bem" |
 | Exames | `perguntar_ecg` | Eletrocardiograma | "O que e ECG?" |
 | Exames | `perguntar_ecocardiograma` | Ecocardiograma | "Me explica o eco" |
@@ -197,7 +198,7 @@ Foram modeladas 15 intencoes com 10 exemplos de treino cada (total: 150 exemplos
 
 | Entidade | Valores | Exemplos de Sinonimos |
 |----------|---------|----------------------|
-| `@sintoma` | 7 valores | dor no peito, palpitacao, falta de ar, tontura, pressao alta, nausea, suor frio |
+| `@sintoma` | 8 valores | dor no peito, palpitacao, falta de ar, tontura, pressao alta, inchaco, nausea, suor frio |
 | `@duracao` | 5 valores | minutos, horas, dias, semanas, meses |
 | `@intensidade` | 3 valores | leve/fraco, moderada/medio, intensa/forte |
 | `@exame` | 5 valores | ECG, ecocardiograma, holter, teste ergometrico, cateterismo |
@@ -234,9 +235,9 @@ Foram implementados 30 testes automatizados organizados em 3 suites:
 ### 5.2 Integracao Watson Assistant
 
 O Watson Assistant foi configurado e treinado com sucesso:
-- **15 intencoes** reconhecidas com confianca media superior a 85%
+- **16 intencoes** reconhecidas com confianca media superior a 85%
 - **4 entidades** com extracao por sinonimos
-- **17 nos de dialogo** com fluxo estruturado
+- **18 nos de dialogo** com fluxo estruturado
 - **Fallback automatico** ativa modo local quando Watson indisponivel
 - **Tempo medio de resposta:** inferior a 2 segundos via Watson API
 

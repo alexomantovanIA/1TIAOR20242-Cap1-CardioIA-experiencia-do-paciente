@@ -1,6 +1,6 @@
 # Instrucoes de Configuracao - IBM Watson Assistant
 
-> **Nota:** As imagens neste documento sao placeholders ilustrativos. Recomenda-se substitui-las por capturas de tela reais do painel IBM Cloud ao configurar o projeto.
+> **Nota:** As imagens neste documento sao ilustracoes representativas do painel IBM Cloud. Para maior fidelidade, recomenda-se complementar com capturas de tela reais ao configurar o projeto.
 
 ## 1. Pre-requisitos
 
@@ -69,15 +69,15 @@ Existem duas formas de importar a modelagem de intents, entities e dialog nodes.
 2. Selecione o arquivo `assistant/cardioia_assistant_export.json`.
 3. Clique em **Import**.
 4. Verifique se foram importados:
-   - 15 intents com 150 exemplos
+   - 16 intents com ~160 exemplos
    - 4 entities com sinonimos
-   - 17 dialog nodes
+   - 18 dialog nodes
 
-**Figura 3 - Painel de Intents apos importacao (15 intents, 10 exemplos cada):**
+**Figura 3 - Painel de Intents apos importacao (16 intents, 10 exemplos cada):**
 
 ![Intents do Watson Assistant](../samples/screenshots/watson_intents.png)
 
-**Figura 4 - Painel de Dialog Nodes apos importacao (17 nos de dialogo):**
+**Figura 4 - Painel de Dialog Nodes apos importacao (18 nos de dialogo):**
 
 ![Dialog Nodes do Watson Assistant](../samples/screenshots/watson_dialog_nodes.png)
 

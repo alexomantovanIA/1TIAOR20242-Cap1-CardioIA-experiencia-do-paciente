@@ -390,7 +390,7 @@ Quando uma regra de seguranca e ativada, a seguinte resposta e retornada com `so
 
 ## 5. Dialog Nodes (Nos de Dialogo)
 
-O Watson Assistant utiliza 17 nos de dialogo para processar as respostas. A tabela abaixo descreve cada no, sua condicao de ativacao e o tipo de resposta gerada.
+O Watson Assistant utiliza 18 nos de dialogo para processar as respostas. A tabela abaixo descreve cada no, sua condicao de ativacao e o tipo de resposta gerada.
 
 | # | Node ID                    | Titulo                     | Condicao                   | Tipo de Resposta              |
 |---|---------------------------|----------------------------|----------------------------|-------------------------------|

@@ -75,7 +75,7 @@ CardioIA: Ola! Sou o CardioIA, um assistente academico de apoio educacional
 
 **Processamento:**
 
-1. **Identificacao da intencao (intent):** O Watson Assistant (ou fallback local) classifica a mensagem em uma das 15 intencoes definidas.
+1. **Identificacao da intencao (intent):** O Watson Assistant (ou fallback local) classifica a mensagem em uma das 16 intencoes definidas.
 
 2. **Extracao de entidades:** Informacoes especificas sao extraidas automaticamente:
    - `@sintoma` - tipo de sintoma (dor no peito, palpitacao, falta de ar, etc.)

@@ -125,7 +125,7 @@ O `WatsonService` implementa o padrao Strategy com fallback automatico:
 - Reconhecimento de intents: correspondencia por palavras-chave normalizadas (sem acentos)
 - Reconhecimento de entities: correspondencia por padroes regex
 - Selecao de resposta: lista de prioridade predefinida (urgencia > sintoma especifico > exame > geral)
-- 15 intencoes mapeadas, 4 tipos de entidades, respostas predefinidas por intent
+- 16 intencoes mapeadas, 4 tipos de entidades, respostas predefinidas por intent
 
 ---
 
