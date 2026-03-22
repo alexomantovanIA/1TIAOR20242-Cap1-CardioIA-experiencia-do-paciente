@@ -43,6 +43,12 @@ function appendMessage(author, text, options = {}) {
     tag.textContent = options.tag;
     metaEl.appendChild(tag);
   }
+  if (options.source) {
+    const sourceTag = document.createElement("span");
+    sourceTag.className = "message-tag message-tag--source";
+    sourceTag.textContent = options.source;
+    metaEl.appendChild(sourceTag);
+  }
   if (!metaEl.children.length) {
     metaEl.remove();
   }
@@ -148,6 +154,12 @@ async function sendMessage(message) {
         ? "O CardioIA pode orientar sobre sinais de alerta e próximos passos seguros, mas não confirmar diagnósticos."
         : "Lembrete: esta orientação é educativa e não substitui avaliação clínica.";
 
+    const sourceLabel = data.source === "watson_assistant"
+      ? "Watson Assistant"
+      : data.source === "safety_override"
+        ? "Regra de segurança"
+        : "Fallback local";
+
     appendMessage("assistant", data.reply, {
       alert: data.urgency_detected,
       variant: isDiagnosticLimit ? "limit" : "",
@@ -162,13 +174,14 @@ async function sendMessage(message) {
           ? "message-tag--limit"
           : "message-tag--neutral",
       note,
+      source: sourceLabel,
     });
     setStatusMessage(
       data.urgency_detected
         ? "Alerta de urgência identificado"
         : isDiagnosticLimit
           ? "Limite de escopo aplicado"
-          : "Resposta educacional entregue",
+          : "Resposta educacional entregue — " + sourceLabel,
       "default"
     );
   } catch (error) {
@@ -218,10 +231,6 @@ inputEl.addEventListener("keydown", async (event) => {
 });
 
 clearButtonEl.addEventListener("click", () => {
-  const confirmed = window.confirm("Deseja limpar o histórico desta conversa?");
-  if (!confirmed) {
-    return;
-  }
   messagesEl.innerHTML = "";
   conversationId = null;
   window.localStorage.removeItem("cardioia_conversation_id");

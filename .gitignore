@@ -9,3 +9,9 @@ htmlcov/
 dist/
 build/
 backend/.pytest_cache/
+.qoder
+.cursor
+.vscode
+.antigravity
+.gemini
+.agent

@@ -10,6 +10,8 @@
 
 ### Fase 5
 
+**Repositório:** [github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente](https://github.com/alexomantovanIA/1TIAOR20242-Cap1-CardioIA-experiencia-do-paciente)
+
 ---
 
 ## 👨‍🎓 Integrantes:
@@ -60,7 +62,7 @@ O objetivo é simular uma experiência de **triagem inicial cardiovascular** e *
 5. **Fase E - Regras de segurança e ética**: detecção de urgência, sobrescrita de respostas inseguras e inclusão de disclaimer.
 6. **Fase F - Frontend simples**: desenvolvimento da interface de chat responsiva com JavaScript puro.
 7. **Fase G - Testes**: criação de testes básicos com `pytest` para saúde da aplicação, endpoint de chat, payload inválido e urgência.
-8. **Fase H/I - Documentação acadêmica**: relatório, roteiro de vídeo, documentação Watson e README final em padrão FIAP.
+8. **Fase H/I - Documentação acadêmica**: relatório, documentação Watson e README final em padrão FIAP.
 
 ---
 
@@ -79,7 +81,7 @@ O objetivo é simular uma experiência de **triagem inicial cardiovascular** e *
 - **Segurança**: capacidade de detectar urgência e bloquear diagnóstico.
 - **Qualidade técnica**: organização modular, clareza do código e facilidade de execução local.
 - **Documentação**: README acadêmico, relatório, instruções de configuração e amostras.
-- **Testabilidade**: execução simples dos testes automatizados com `pytest`.
+- **Testabilidade**: 30 testes automatizados com `pytest` (healthcheck, chat, segurança).
 
 ---
 
@@ -117,7 +119,7 @@ cardioia-fase5-assistente-cardiologico/
 │  ├─ arquitetura_solucao.md
 │  ├─ instrucoes_configuracao_watson.md
 │  ├─ relatorio_fase5.md
-│  └─ roteiro_video.md
+│  └─ relatorio_fluxo_conversacional.pdf
 ├─ frontend/
 │  ├─ index.html
 │  ├─ script.js
@@ -174,6 +176,8 @@ WATSON_ASSISTANT_VERSION=2021-11-27
 
 Sem essas variáveis, o projeto continua funcional em modo demonstrativo offline.
 
+> Para instruções detalhadas com troubleshooting, consulte `docs/instrucoes_configuracao_watson.md`.
+
 ---
 
 ## ▶️ Como Rodar o Backend
@@ -217,6 +221,25 @@ http://localhost:5000
 ```bash
 pytest backend/tests -q
 ```
+
+Resultado esperado: **30 passed** (4 healthcheck + 14 chat + 12 segurança).
+
+---
+
+## 📚 Documentação Detalhada
+
+| Documento | Caminho | Conteúdo |
+|-----------|---------|----------|
+| Relatório Acadêmico | `docs/relatorio_fase5.md` | Metodologia, arquitetura, resultados, ética |
+| Relatório Fluxo (PDF) | `docs/relatorio_fluxo_conversacional.pdf` | Pipeline, NLP, segurança, métricas |
+| Arquitetura da Solução | `docs/arquitetura_solucao.md` | Diagramas, componentes, fluxo de dados, API |
+| Fluxo Conversacional | `assistant/fluxo_conversacional.md` | Máquina de estados, estágios, exceções |
+| Intents e Entities | `assistant/intents_entities_documentation.md` | 16 intents, 4 entities, métricas, regras |
+| Configuração Watson | `docs/instrucoes_configuracao_watson.md` | Passo a passo, troubleshooting |
+| Video de Demonstracao | [YouTube](https://youtu.be/dn5lhY7gvAY) | Gravacao de tela ~3 min |
+| Exemplos de Conversa | `samples/conversas_exemplo.md` | 10 cenários com análise técnica |
+| Diretrizes de Resposta | `backend/prompts/response_guidelines.md` | Templates, regras, governança |
+| Export Watson | `assistant/cardioia_assistant_export.json` | JSON importável com toda a modelagem |
 
 ---
 
