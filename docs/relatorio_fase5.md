@@ -71,7 +71,9 @@ O projeto seguiu uma abordagem incremental organizada em 8 fases internas:
 
 **Fase G - Testes:** criacao de 30 testes automatizados com pytest cobrindo: healthcheck (4 testes), endpoint de chat (14 testes) e regras de seguranca (12 testes). Cobertura de cenarios positivos, negativos e de borda.
 
-**Fase H/I - Documentacao:** elaboracao de relatorio tecnico, documentacao de arquitetura, fluxo conversacional, instrucoes de configuracao, roteiro de video e exemplos de conversas anotados.
+**Fase H/I - Documentacao:** elaboracao de relatorio tecnico, documentacao de arquitetura, fluxo conversacional, instrucoes de configuracao e exemplos de conversas anotados.
+
+**Video de demonstracao:** https://youtu.be/dn5lhY7gvAY
 
 ---
 
@@ -79,7 +81,7 @@ O projeto seguiu uma abordagem incremental organizada em 8 fases internas:
 
 ### 3.1 Visao Geral
 
-A arquitetura segue o padrao de tres camadas com separacao clara de responsabilidades:
+A arquitetura segue o padrao de tres camadas com separacao clara de responsabilidades. Cada mensagem recebida percorre um pipeline sequencial: **(1) camada de seguranca**, que intercepta urgencias antes de qualquer processamento de NLP; **(2) camada de NLP**, que classifica intencoes e extrai entidades via IBM Watson Assistant ou motor de fallback local; e **(3) camada de respostas educacionais**, que seleciona e formata a orientacao adequada.
 
 ```
 +-------------------+       HTTP POST /api/chat      +-------------------+
@@ -205,17 +207,23 @@ Foram modeladas 16 intencoes com 10 exemplos de treino cada (total: ~160 exemplo
 
 ### 4.3 Regras de Seguranca
 
-O modulo `safety_rules.py` implementa verificacao de urgencia com **prioridade sobre o Watson**:
+O modulo `backend/utils/safety_rules.py` implementa verificacao de urgencia com **prioridade sobre o Watson**. A funcao `check_urgency()` (linha 54) normaliza o texto via `_normalize()` — removendo acentos e convertendo para minusculas — e busca correspondencias em duas estruturas:
 
-**Palavras-chave individuais (20):** "dor intensa no peito", "infarto", "desmaio", "perda de consciencia", "parada cardiaca", "AVC", "falta de ar intensa", "suor frio", entre outras.
+**Palavras-chave individuais (20)** (lista `URGENCY_KEYWORDS`, linha 3): "dor intensa no peito", "infarto", "desmaio", "perda de consciencia", "parada cardiaca", "AVC", "falta de ar intensa", "suor frio", entre outras.
 
-**Combinacoes (2 regras):**
+**Combinacoes (2 regras)** (lista `URGENCY_COMBINATIONS`, linha 26):
 - Dor toracica + (falta de ar | suor | nausea | dor no braco)
 - Tontura + (desmaio | perda de consciencia)
 
 **Normalizacao:** acentos sao removidos antes da verificacao para garantir deteccao independente de formatacao.
 
-**Comportamento:** quando urgencia e detectada, a resposta padrao e sobrescrita por alerta com orientacao para SAMU (192). O campo `source` retorna `"safety_override"` e `urgency_detected` retorna `true`.
+**Comportamento:** quando urgencia e detectada, o pipeline e **interrompido** — o Watson nao e acionado. A resposta padronizada (`URGENCY_RESPONSE`, linha 31) orienta o usuario a procurar atendimento medico imediato ou ligar para o SAMU (192). O campo `source` retorna `"safety_override"` e `urgency_detected` retorna `true`.
+
+**Validacao:** 11 testes unitarios em `backend/tests/test_safety_rules.py` cobrem palavras-chave individuais, combinacoes, normalizacao de acentos e ausencia de falsos positivos.
+
+### 4.4 Motor de Fallback Local
+
+Quando o Watson esta indisponivel, o fallback local (funcao `_classify_intent()` em `backend/services/watson_service.py`) utiliza correspondencia por palavras-chave com normalizacao de acentos. O dicionario `INTENT_KEYWORDS` (linha 15) mapeia cada uma das 16 intencoes a uma lista de termos. A classificacao percorre as intencoes em ordem de prioridade definida na funcao `_choose_response()`, priorizando sintomas especificos sobre o generico (`informar_sintoma_geral`) e garantindo que `solicitar_diagnostico` seja corretamente identificado antes do fallback final. O sistema utiliza **18 nos de dialogo** encadeados via campo `previous_sibling` no JSON exportado para definir a ordem de avaliacao no Watson.
 
 ---
 
@@ -325,9 +333,9 @@ assistant/
   intents_entities_documentation.md
 docs/
   relatorio_fase5.md (este documento)
+  relatorio_fluxo_conversacional.pdf
   arquitetura_solucao.md
   instrucoes_configuracao_watson.md
-  roteiro_video.md
 frontend/
   index.html, script.js, style.css
 samples/
